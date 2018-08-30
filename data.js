@@ -1,4 +1,8 @@
 var c = []
+var adresses = {//I know I spelled addresses wrong, but I'd already copy-pasted all the shit below and this was quicker
+        items:[["DF97","E040"],["DDC8","E022"],["DE48","DFE6"],["DFBE","DFFA"],"DD88","DF57","DDE4","DED1","DFA5","DA23"],
+        graphics:[["14725","14DE0","150B2","1510C","15255","15531"],["14743","14759","15072","150D3","1520E","1527A","153BC","15525","1552F"],["15095","150BB","15529"],["14C22","150B4","150C2","15199","15527","1552B"],"15132",["150A6","15533"],"15084",["154FE","15500","15523"],["14804","1498F","15026","15521","1552D"],["14C0C","15047"]]
+    }
 var testhack = function(){
     //opens gameboy emulator in a new tab/window
     window.open("GB_Emu/index.xhtml")
@@ -145,10 +149,8 @@ var encode = function(){
 		}
 		i += 1
         }
-        console.log(""+seed+"")
         document.getElementById("seed").value = ""+seed+""
-	console.log(i)
-        //generate seed
+	//generate seed
     } else if (seedused === true){
         //add usrseed to seed
         var strseed = document.getElementById("seed").value.split(",")
@@ -156,98 +158,90 @@ var encode = function(){
 	while(i != 10){
 	    seed[i] = parseInt(strseed[i], 10)
 	    i += 1
-	}        
-	console.log(seed)
-    }
-    var adresses = {//I know I spelled addresses wrong, but I'd already copy-pasted all the shit below and this was quicker
-        items:[["DF97","E040"],["DDC8","E022"],["DE48","DFE6"],["DFBE","DFFA"],"DD88","DF57","DDE4","DED1","DFA5","DA23"],
-        graphics:[["14725","14DE0","150b2","1510c","15255","15531"],["14743","14759","15072","150d3","1520e","1527a","153bc","15525","1552f"],["15095","150bb","15529"],["14c22","150b4","150c2","15199","15527","1552b"],"15132",["150a6","15533"],"15084",["154fe","15500","15523"],["14804","1498f","15026","15521","1552d"],["14c0c","15047"]]
+	}
     }
     var ireplacement = ["80","82","84","86","88","8A","8C","8E","90","92"]
     var greplacement = ["D1","D2","D3","D4","D5","D6","D7","D8","D9","DA"]
     //replace items
-    //let's see if this fucking works...
         var strseed = document.getElementById("seed").value.split(",")
 	var i = 0
 	while(i != 10){
 	    seed[i] = parseInt(strseed[i], 10)
 	    i += 1
 	}
-	console.log(""+seed+"")
-    //c[] = value
     
-    c[parseInt(adresses.items[0][0])] = ireplacement[seed[0]]
-    c[parseInt(adresses.items[0][1])] = ireplacement[seed[0]]
+    c[parseInt(adresses.items[0][0], 10)] = ireplacement[seed[0]]
+    c[parseInt(adresses.items[0][1], 10)] = ireplacement[seed[0]]
 
-    c[parseInt(adresses.items[1][0])] = ireplacement[seed[1]]
-    c[parseInt(adresses.items[1][1])] = ireplacement[seed[1]]
+    c[parseInt(adresses.items[1][0], 10)] = ireplacement[seed[1]]
+    c[parseInt(adresses.items[1][1], 10)] = ireplacement[seed[1]]
     
-    c[parseInt(adresses.items[2][0])] = ireplacement[seed[2]]
-    c[parseInt(adresses.items[2][1])] = ireplacement[seed[2]]
+    c[parseInt(adresses.items[2][0], 10)] = ireplacement[seed[2]]
+    c[parseInt(adresses.items[2][1], 10)] = ireplacement[seed[2]]
     
-    c[parseInt(adresses.items[3][0])] = ireplacement[seed[3]]
-    c[parseInt(adresses.items[3][1])] = ireplacement[seed[3]]
+    c[parseInt(adresses.items[3][0], 10)] = ireplacement[seed[3]]
+    c[parseInt(adresses.items[3][1], 10)] = ireplacement[seed[3]]
     
-    c[parseInt(adresses.items[4])] = ireplacement[seed[4]]
+    c[parseInt(adresses.items[4], 10)] = ireplacement[seed[4]]
     
-    c[parseInt(adresses.items[5])] = ireplacement[seed[5]]
+    c[parseInt(adresses.items[5], 10)] = ireplacement[seed[5]]
     
-    c[parseInt(adresses.items[6])] = ireplacement[seed[6]]
+    c[parseInt(adresses.items[6], 10)] = ireplacement[seed[6]]
     
-    c[parseInt(adresses.items[7])] = ireplacement[seed[7]]
+    c[parseInt(adresses.items[7], 10)] = ireplacement[seed[7]]
     
-    c[parseInt(adresses.items[8])] = ireplacement[seed[8]]
+    c[parseInt(adresses.items[8], 10)] = ireplacement[seed[8]]
     
-    c[parseInt(adresses.items[9])] = ireplacement[seed[9]]
+    c[parseInt(adresses.items[9], 10)] = ireplacement[seed[9]]
     
     //replace screen transition codes for proper graphics loading (which a CERTAIN DUMBASS didn't do the first time around)
-    /*c[parseInt(adresses.graphics[0][0])] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][1])] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][2])] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][3])] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][4])] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][5])] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][0], 10)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][1], 10)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][2], 10)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][3], 10)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][4], 10)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][5], 10)] = greplacement[seed[0]]
     
-    c[parseInt(adresses.graphics[1][0])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][1])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][2])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][3])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][4])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][5])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][6])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][7])] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][8])] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][0], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][1], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][2], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][3], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][4], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][5], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][6], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][7], 10)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][8], 10)] = greplacement[seed[1]]
 
-    c[parseInt(adresses.graphics[2][0])] = greplacement[seed[2]]
-    c[parseInt(adresses.graphics[2][1])] = greplacement[seed[2]]
-    c[parseInt(adresses.graphics[2][2])] = greplacement[seed[2]]
+    c[parseInt(adresses.graphics[2][0], 10)] = greplacement[seed[2]]
+    c[parseInt(adresses.graphics[2][1], 10)] = greplacement[seed[2]]
+    c[parseInt(adresses.graphics[2][2], 10)] = greplacement[seed[2]]
 
-    c[parseInt(adresses.graphics[3][0])] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][1])] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][2])] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][3])] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][4])] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][5])] = greplacement[seed[3]]
+    /*c[parseInt(adresses.graphics[3][0], 10)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][1], 10)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][2], 10)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][3], 10)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][4], 10)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][5], 10)] = greplacement[seed[3]]
 
-    c[parseInt(adresses.graphics[4])] = greplacement[seed[4]]
+    c[parseInt(adresses.graphics[4], 10)] = greplacement[seed[4]]
 
-    c[parseInt(adresses.graphics[5][0])] = greplacement[seed[5]]
-    c[parseInt(adresses.graphics[5][1])] = greplacement[seed[5]]
+    c[parseInt(adresses.graphics[5][0], 10)] = greplacement[seed[5]]
+    c[parseInt(adresses.graphics[5][1], 10)] = greplacement[seed[5]]*/
    
-    c[parseInt(adresses.graphics[6])] = greplacement[seed[6]]
+    c[parseInt(adresses.graphics[6], 10)] = greplacement[seed[6]]
         
-    c[parseInt(adresses.graphics[7][0])] = greplacement[seed[7]]
-    c[parseInt(adresses.graphics[7][1])] = greplacement[seed[7]]
-    c[parseInt(adresses.graphics[7][2])] = greplacement[seed[7]]
+    c[parseInt(adresses.graphics[7][0], 10)] = greplacement[seed[7]]
+    c[parseInt(adresses.graphics[7][1], 10)] = greplacement[seed[7]]
+    c[parseInt(adresses.graphics[7][2], 10)] = greplacement[seed[7]]
 
-    c[parseInt(adresses.graphics[8][0])] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][1])] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][2])] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][3])] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][4])] = greplacement[seed[8]]
+    /*c[parseInt(adresses.graphics[8][0], 10)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][1], 10)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][2], 10)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][3], 10)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][4], 10)] = greplacement[seed[8]]
 
-    c[parseInt(adresses.graphics[9][0])] = greplacement[seed[9]]
-    c[parseInt(adresses.graphics[9][1])] = greplacement[seed[9]]*/
+    c[parseInt(adresses.graphics[9][0], 10)] = greplacement[seed[9]]
+    c[parseInt(adresses.graphics[9][1], 10)] = greplacement[seed[9]]*/
     var i = 0
     while(i <= bytes.length){
         value += ""+c[i]+""
