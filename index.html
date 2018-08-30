@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>M2 Randomizer</title></head>
+<body>
+    <h1>Metroid 2 Randomizer</h1>
+    <div id = "file manager" style = "position: absolute; top: 80px; left: 0; border: 1px solid #000000; width: 550px">
+        <h2>File:</h2>
+        FileName: <br><textarea id = "filename" rows = 1 cols = 10></textarea>Seed: <textarea id = "seed" rows = 1 cols = 20></textarea><br>Data
+<div id="divMain">
+</div>
+HEX Editor:<br>
+<textarea id = "output HEX" rows = 10 cols = 57></textarea>
+<script type="text/javascript" src = "hex.js">
+</script><br>
+    <input type = "button" id = "sorter" value = "decode" onclick = "button()">
+    <input type = "button" id = "encode" value = "randomize" onclick = "encode()">
+        <input type = "button" id = "test" value = "play randomized ROM" onclick = "testhack()">
+    </div>
+</body>
+    <script src = "data.js">
+    </script>
+</html>
