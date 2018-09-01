@@ -170,7 +170,31 @@ var encode = function(){
 	    seed[i] = parseInt(strseed[i], 10)
 	    i += 1
 	}
+    //sets items not to save state
+    c[parseInt(adresses.items[0][0], 16)-1] = ireplacement[seed[0]]
+    c[parseInt(adresses.items[0][1], 16)-1] = ireplacement[seed[0]]
+
+    c[parseInt(adresses.items[1][0], 16)-1] = ireplacement[seed[1]]
+    c[parseInt(adresses.items[1][1], 16)-1] = ireplacement[seed[1]]
     
+    c[parseInt(adresses.items[2][0], 16)-1] = ireplacement[seed[2]]
+    c[parseInt(adresses.items[2][1], 16)-1] = ireplacement[seed[2]]
+    
+    c[parseInt(adresses.items[3][0], 16)-1] = ireplacement[seed[3]]
+    c[parseInt(adresses.items[3][1], 16)-1] = ireplacement[seed[3]]
+    
+    c[parseInt(adresses.items[4], 16)-1] = ireplacement[seed[4]]
+    
+    c[parseInt(adresses.items[5], 16)-1] = ireplacement[seed[5]]
+    
+    c[parseInt(adresses.items[6], 16)-1] = ireplacement[seed[6]]
+    
+    c[parseInt(adresses.items[7], 16)-1] = ireplacement[seed[7]]
+    
+    c[parseInt(adresses.items[8], 16)-1] = ireplacement[seed[8]]
+    
+    c[parseInt(adresses.items[9], 16)-1] = ireplacement[seed[9]]
+	
     c[parseInt(adresses.items[0][0], 16)] = ireplacement[seed[0]]
     c[parseInt(adresses.items[0][1], 16)] = ireplacement[seed[0]]
 
