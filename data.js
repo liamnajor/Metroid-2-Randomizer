@@ -165,6 +165,11 @@ var encode = function(){
     //replace items
     c[20099] = "00"
     c[parseInt("34FBD", 16)] = "1D"
+    c[parseInt("31127", 16)] = "00"
+    c[parseInt("31148", 16)] = "00"
+    c[parseInt("31187", 16)] = "00"
+    c[parseInt("311C8", 16)] = "08"
+    c[parseInt("311D8", 16)] = "00"
         var strseed = document.getElementById("seed").value.split(",")
 	var i = 0
 	while(i != 10){
