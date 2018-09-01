@@ -164,6 +164,7 @@ var encode = function(){
     var greplacement = ["D1","D2","D3","D4","D5","D6","D7","D8","D9","DA"]
     //replace items
     c[20099] = "00"
+    c[parseInt("34FBD", 16)] = "1D"
         var strseed = document.getElementById("seed").value.split(",")
 	var i = 0
 	while(i != 10){
