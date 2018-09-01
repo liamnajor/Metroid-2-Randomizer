@@ -1,7 +1,7 @@
 var c = []
 var adresses = {//I know I spelled addresses wrong, but I'd already copy-pasted all the shit below and this was quicker
-        items:[["DF97","E040"],["DDC8","E022"],["DE48","DFE6"],["DFBE","DFFA"],"DD88","DF57","DDE4","DED1","DFA5","DA23"],
-        graphics:[["14725","14DE0","150B2","1510C","15255","15531"],["14743","14759","15072","150D3","1520E","1527A","153BC","15525","1552F"],["15095","150BB","15529"],["14C22","150B4","150C2","15199","15527","1552B"],"15132",["150A6","15533"],"15084",["154FE","15500","15523"],["14804","1498F","15026","15521","1552D"],["14C0C","15047"]]
+        items:[["DF97","E041"],["DDC9","E023"],["DE49","DFE7"],["DFBF","DFFA"],"DD89","DF58","DDE5","DED2","DFA6","DA24"],
+        graphics:[["14725","14DE2","150B2","1510C","15255","15531"],["14743","14759","15072","150D3","1520E","1527A","153BC","15525","1552F"],["15095","150BB","15529"],["14C22","150B4","150C2","15199","15527","1552B"],"15132",["150A6","15533"],"15084",["154FE","15500","15523"],["14804","1498F","15026","15521","1552D"],["14C0C","15047"]]
     }
 var testhack = function(){
     //opens gameboy emulator in a new tab/window
@@ -138,7 +138,7 @@ var encode = function(){
     if (seedused === false){
 	var i = 0
         while(i != 10){
-		var val = Math.floor((Math.random() * 10) + 1);
+		var val = Math.floor((Math.random() * 10));
 		seed[i] = val
 		var e
 		for(e = 0; e != i; e++){
@@ -163,6 +163,7 @@ var encode = function(){
     var ireplacement = ["80","82","84","86","88","8A","8C","8E","90","92"]
     var greplacement = ["D1","D2","D3","D4","D5","D6","D7","D8","D9","DA"]
     //replace items
+    c[20099] = "00"
         var strseed = document.getElementById("seed").value.split(",")
 	var i = 0
 	while(i != 10){
@@ -170,78 +171,75 @@ var encode = function(){
 	    i += 1
 	}
     
-    c[parseInt(adresses.items[0][0], 10)] = ireplacement[seed[0]]
-    c[parseInt(adresses.items[0][1], 10)] = ireplacement[seed[0]]
+    c[parseInt(adresses.items[0][0], 16)] = ireplacement[seed[0]]
+    c[parseInt(adresses.items[0][1], 16)] = ireplacement[seed[0]]
 
-    c[parseInt(adresses.items[1][0], 10)] = ireplacement[seed[1]]
-    c[parseInt(adresses.items[1][1], 10)] = ireplacement[seed[1]]
+    c[parseInt(adresses.items[1][0], 16)] = ireplacement[seed[1]]
+    c[parseInt(adresses.items[1][1], 16)] = ireplacement[seed[1]]
     
-    c[parseInt(adresses.items[2][0], 10)] = ireplacement[seed[2]]
-    c[parseInt(adresses.items[2][1], 10)] = ireplacement[seed[2]]
+    c[parseInt(adresses.items[2][0], 16)] = ireplacement[seed[2]]
+    c[parseInt(adresses.items[2][1], 16)] = ireplacement[seed[2]]
     
-    c[parseInt(adresses.items[3][0], 10)] = ireplacement[seed[3]]
-    c[parseInt(adresses.items[3][1], 10)] = ireplacement[seed[3]]
+    c[parseInt(adresses.items[3][0], 16)] = ireplacement[seed[3]]
+    c[parseInt(adresses.items[3][1], 16)] = ireplacement[seed[3]]
     
-    c[parseInt(adresses.items[4], 10)] = ireplacement[seed[4]]
+    c[parseInt(adresses.items[4], 16)] = ireplacement[seed[4]]
     
-    c[parseInt(adresses.items[5], 10)] = ireplacement[seed[5]]
+    c[parseInt(adresses.items[5], 16)] = ireplacement[seed[5]]
     
-    c[parseInt(adresses.items[6], 10)] = ireplacement[seed[6]]
+    c[parseInt(adresses.items[6], 16)] = ireplacement[seed[6]]
     
-    c[parseInt(adresses.items[7], 10)] = ireplacement[seed[7]]
+    c[parseInt(adresses.items[7], 16)] = ireplacement[seed[7]]
     
-    c[parseInt(adresses.items[8], 10)] = ireplacement[seed[8]]
+    c[parseInt(adresses.items[8], 16)] = ireplacement[seed[8]]
     
-    c[parseInt(adresses.items[9], 10)] = ireplacement[seed[9]]
+    c[parseInt(adresses.items[9], 16)] = ireplacement[seed[9]]
     
     //replace screen transition codes for proper graphics loading (which a CERTAIN DUMBASS didn't do the first time around)
-    c[parseInt(adresses.graphics[0][0], 10)] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][1], 10)] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][2], 10)] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][3], 10)] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][4], 10)] = greplacement[seed[0]]
-    c[parseInt(adresses.graphics[0][5], 10)] = greplacement[seed[0]]
-    
-    c[parseInt(adresses.graphics[1][0], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][1], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][2], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][3], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][4], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][5], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][6], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][7], 10)] = greplacement[seed[1]]
-    c[parseInt(adresses.graphics[1][8], 10)] = greplacement[seed[1]]
-
-    c[parseInt(adresses.graphics[2][0], 10)] = greplacement[seed[2]]
-    c[parseInt(adresses.graphics[2][1], 10)] = greplacement[seed[2]]
-    c[parseInt(adresses.graphics[2][2], 10)] = greplacement[seed[2]]
-
-    /*c[parseInt(adresses.graphics[3][0], 10)] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][1], 10)] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][2], 10)] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][3], 10)] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][4], 10)] = greplacement[seed[3]]
-    c[parseInt(adresses.graphics[3][5], 10)] = greplacement[seed[3]]
-
-    c[parseInt(adresses.graphics[4], 10)] = greplacement[seed[4]]
-
-    c[parseInt(adresses.graphics[5][0], 10)] = greplacement[seed[5]]
-    c[parseInt(adresses.graphics[5][1], 10)] = greplacement[seed[5]]*/
+    c[parseInt(adresses.graphics[0][0], 16)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][1], 16)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][2], 16)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][3], 16)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][4], 16)] = greplacement[seed[0]]
+    c[parseInt(adresses.graphics[0][5], 16)] = greplacement[seed[0]]
    
-    c[parseInt(adresses.graphics[6], 10)] = greplacement[seed[6]]
+    c[parseInt(adresses.graphics[1][0], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][1], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][2], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][3], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][4], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][5], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][6], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][7], 16)] = greplacement[seed[1]]
+    c[parseInt(adresses.graphics[1][8], 16)] = greplacement[seed[1]]
+
+    c[parseInt(adresses.graphics[2][0], 16)] = greplacement[seed[2]]
+    c[parseInt(adresses.graphics[2][1], 16)] = greplacement[seed[2]]
+    c[parseInt(adresses.graphics[2][2], 16)] = greplacement[seed[2]]
+
+    c[parseInt(adresses.graphics[3][0], 16)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][1], 16)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][2], 16)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][3], 16)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][4], 16)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[3][5], 16)] = greplacement[seed[3]]
+    c[parseInt(adresses.graphics[4], 16)] = greplacement[seed[4]]
+    c[parseInt(adresses.graphics[5][0], 16)] = greplacement[seed[5]]
+    c[parseInt(adresses.graphics[5][1], 16)] = greplacement[seed[5]]
+ 
+    c[parseInt(adresses.graphics[6], 16)] = greplacement[seed[6]]
         
-    c[parseInt(adresses.graphics[7][0], 10)] = greplacement[seed[7]]
-    c[parseInt(adresses.graphics[7][1], 10)] = greplacement[seed[7]]
-    c[parseInt(adresses.graphics[7][2], 10)] = greplacement[seed[7]]
+    c[parseInt(adresses.graphics[7][0], 16)] = greplacement[seed[7]]
+    c[parseInt(adresses.graphics[7][1], 16)] = greplacement[seed[7]]
+    c[parseInt(adresses.graphics[7][2], 16)] = greplacement[seed[7]]
 
-    /*c[parseInt(adresses.graphics[8][0], 10)] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][1], 10)] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][2], 10)] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][3], 10)] = greplacement[seed[8]]
-    c[parseInt(adresses.graphics[8][4], 10)] = greplacement[seed[8]]
-
-    c[parseInt(adresses.graphics[9][0], 10)] = greplacement[seed[9]]
-    c[parseInt(adresses.graphics[9][1], 10)] = greplacement[seed[9]]*/
+    c[parseInt(adresses.graphics[8][0], 16)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][1], 16)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][2], 16)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][3], 16)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[8][4], 16)] = greplacement[seed[8]]
+    c[parseInt(adresses.graphics[9][0], 16)] = greplacement[seed[9]]
+    c[parseInt(adresses.graphics[9][1], 16)] = greplacement[seed[9]]
     var i = 0
     while(i <= bytes.length){
         value += ""+c[i]+""
@@ -261,13 +259,3 @@ var encode = function(){
     window.alert("encoding complete")
 }
 main();
-/*banks:
-bank9 = c[147456] to c[163839],
-banka = c[163840] to c[182203], 
-bankb = c[182204] to c[196607],
-bankc = c[196608] to c[212991],
-bankd = c[212992] to c[229375],
-banke = c[229376] to c[245759],
-bankf = c[245760] to c[262143],
-bank content: The first 512 bytes are chunk pointers, the next 256 are scroll data, the next 512 are room transitions, and the rest (the next 15103) are the 16x16 level data chunks. Each bank is 16383 bytes long.
-*/
