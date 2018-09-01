@@ -164,43 +164,37 @@ var encode = function(){
     var greplacement = ["D1","D2","D3","D4","D5","D6","D7","D8","D9","DA"]
     //replace items
     c[20099] = "00"
-    c[parseInt("34FBD", 16)] = "1D"
-    c[parseInt("31127", 16)] = "00"
-    c[parseInt("31148", 16)] = "00"
-    c[parseInt("31187", 16)] = "00"
-    c[parseInt("311C8", 16)] = "08"
-    c[parseInt("311D8", 16)] = "00"
+c[parseInt("31127", 16)] = "00"
+c[parseInt("31158", 16)] = "00"
+c[parseInt("31197", 16)] = "00"
+c[parseInt("311C8", 16)] = "08"
+c[parseInt("311D8", 16)] = "00"
+c[parseInt("25817", 16)] = "00"
+c[parseInt("25848", 16)] = "00"
+c[parseInt("25887", 16)] = "00"
+
+c[parseInt("27c27", 16)] = "00"
+c[parseInt("27c58", 16)] = "00"
+c[parseInt("27c97", 16)] = "00"
+c[parseInt("27cd8", 16)] = "00"
+c[parseInt("251bF", 16)] = "00"
+c[parseInt("251aB", 16)] = "00"
+c[parseInt("25197", 16)] = "00"
+c[parseInt("251d8", 16)] = "00"
+/*c[parseInt("2C6DB", 16)] = "08"
+c[parseInt("2C6EB", 16)] = "08"
+c[parseInt("2C8E3", 16)] = "00"
+c[parseInt("2C8E7", 16)] = "00"
+c[parseInt("2C88B", 16)] = "08"*/
+c[parseInt("4E7A", 16)] = "07"
+
         var strseed = document.getElementById("seed").value.split(",")
 	var i = 0
 	while(i != 10){
 	    seed[i] = parseInt(strseed[i], 10)
 	    i += 1
 	}
-    //sets items not to save state
-    c[parseInt(adresses.items[0][0], 16)-1] = ireplacement[seed[0]]
-    c[parseInt(adresses.items[0][1], 16)-1] = ireplacement[seed[0]]
-
-    c[parseInt(adresses.items[1][0], 16)-1] = ireplacement[seed[1]]
-    c[parseInt(adresses.items[1][1], 16)-1] = ireplacement[seed[1]]
     
-    c[parseInt(adresses.items[2][0], 16)-1] = ireplacement[seed[2]]
-    c[parseInt(adresses.items[2][1], 16)-1] = ireplacement[seed[2]]
-    
-    c[parseInt(adresses.items[3][0], 16)-1] = ireplacement[seed[3]]
-    c[parseInt(adresses.items[3][1], 16)-1] = ireplacement[seed[3]]
-    
-    c[parseInt(adresses.items[4], 16)-1] = ireplacement[seed[4]]
-    
-    c[parseInt(adresses.items[5], 16)-1] = ireplacement[seed[5]]
-    
-    c[parseInt(adresses.items[6], 16)-1] = ireplacement[seed[6]]
-    
-    c[parseInt(adresses.items[7], 16)-1] = ireplacement[seed[7]]
-    
-    c[parseInt(adresses.items[8], 16)-1] = ireplacement[seed[8]]
-    
-    c[parseInt(adresses.items[9], 16)-1] = ireplacement[seed[9]]
-	
     c[parseInt(adresses.items[0][0], 16)] = ireplacement[seed[0]]
     c[parseInt(adresses.items[0][1], 16)] = ireplacement[seed[0]]
 
@@ -226,6 +220,7 @@ var encode = function(){
     c[parseInt(adresses.items[9], 16)] = ireplacement[seed[9]]
     
     //replace screen transition codes for proper graphics loading (which a CERTAIN DUMBASS didn't do the first time around)
+    
     c[parseInt(adresses.graphics[0][0], 16)] = greplacement[seed[0]]
     c[parseInt(adresses.graphics[0][1], 16)] = greplacement[seed[0]]
     c[parseInt(adresses.graphics[0][2], 16)] = greplacement[seed[0]]
