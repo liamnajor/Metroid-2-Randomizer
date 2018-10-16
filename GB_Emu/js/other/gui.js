@@ -1,7 +1,10 @@
+var catcher
 var inFullscreen = false;
 var mainCanvas = null;
 var fullscreenCanvas = null;
 var showAsMinimal = false;
+var B64Load = null;
+var FileLoad = null;
 var keyZones = [
 	["right", [39]],
 	["left", [37]],
@@ -49,6 +52,15 @@ function windowingInitialize() {
     document.getElementById("channel2").checked = settings[14][1];
     document.getElementById("channel3").checked = settings[14][2];
     document.getElementById("channel4").checked = settings[14][3];
+    var opened = localStorage.getItem("opened")
+    if(opened === "true"){
+        stringload()
+        localStorage.setItem("opened","")
+        console.log("opened from ROSE, loading saved ROM")
+    } else if(opened === null || opened === undefined){
+        localStorage.setItem("opened","")
+        console.log("opened normally")
+    }
 }
 function registerGUIEvents() {
 	cout("In registerGUIEvents() : Registering GUI Events.", -1);
@@ -95,6 +107,19 @@ function registerGUIEvents() {
 			}
 		}
 	});
+    B64Load =  function (input) {
+		var datauri = input
+		if (datauri != null && datauri.length > 0) {
+			try {
+				cout(Math.floor(datauri.length * 3 / 4) + " bytes of data submitted by form (text length of " + datauri.length + ").", 0);
+				initPlayer();
+				start(mainCanvas, base64_decode(datauri));
+			}
+			catch (error) {
+				alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+			}
+		}
+	}
 	addEvent("click", document.getElementById("set_volume"), function () {
 		if (GameBoyEmulatorInitialized()) {
 			var volume = prompt("Set the volume here:", "1.0");
@@ -112,7 +137,7 @@ function registerGUIEvents() {
 			}
 		}
 	});
-	addEvent("click", document.getElementById("internal_file_clicker"), function () {
+    addEvent("click", document.getElementById("internal_file_clicker"), function () {
 		var file_opener = document.getElementById("local_file_open");
 		windowStacks[4].show();
 		file_opener.click();
@@ -122,6 +147,7 @@ function registerGUIEvents() {
 	});
 	addEvent("change", document.getElementById("local_file_open"), function () {
 		windowStacks[4].hide();
+        console.log(this.files)
 		if (typeof this.files != "undefined") {
 			try {
 				if (this.files.length >= 1) {
@@ -172,6 +198,60 @@ function registerGUIEvents() {
 			cout("could not find the handle on the file to open.", 2);
 		}
 	});
+    FileLoad = function (input) {
+        this.files = []
+        this.files[0] = input
+		windowStacks[4].hide();
+		if (typeof this.files != "undefined") {
+			try {
+				if (this.files.length >= 1) {
+					cout("Reading the local file \"" + this.files[0].name + "\"", 0);
+					try {
+						//Gecko 1.9.2+ (Standard Method)
+						var binaryHandle = new FileReader();
+						binaryHandle.onload = function () {
+							if (this.readyState == 2) {
+								cout("file loaded.", 0);
+								try {
+									initPlayer();
+									start(mainCanvas, this.result);
+								}
+								catch (error) {
+									alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+								}
+							}
+							else {
+								cout("loading file, please wait...", 0);
+							}
+						}
+						binaryHandle.readAsBinaryString(this.files[this.files.length - 1]);
+					}
+					catch (error) {
+						cout("Browser does not support the FileReader object, falling back to the non-standard File object access,", 2);
+						//Gecko 1.9.0, 1.9.1 (Non-Standard Method)
+						var romImageString = this.files[this.files.length - 1].getAsBinary();
+						try {
+							initPlayer();
+							start(mainCanvas, romImageString);
+						}
+						catch (error) {
+							alert(error.message + " file: " + error.fileName + " line: " + error.lineNumber);
+						}
+						
+					}
+				}
+				else {
+					cout("Incorrect number of files selected for local loading.", 1);
+				}
+			}
+			catch (error) {
+				cout("Could not load in a locally stored ROM file.", 2);
+			}
+		}
+		else {
+			cout("could not find the handle on the file to open.", 2);
+		}
+	};
 	addEvent("change", document.getElementById("save_open"), function () {
 		windowStacks[9].hide();
 		if (typeof this.files != "undefined") {
@@ -202,6 +282,8 @@ function registerGUIEvents() {
 						cout("Browser does not support the FileReader object, falling back to the non-standard File object access,", 2);
 						//Gecko 1.9.0, 1.9.1 (Non-Standard Method)
 						var romImageString = this.files[this.files.length - 1].getAsBinary();
+                        console.log(romImageString)
+                        catcher = romImageString
 						try {
 							import_save(romImageString);
 							refreshStorageListing();
