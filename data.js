@@ -1,5 +1,5 @@
 var seedused = false    
-var c = []
+var byteArray = []
 var hex = null
 var addresses = {
         items:[["DF97","E041"],["DDC9","E023"],["DE49","DFE7"],["DFBF","DFFA"],"DD89","DF58","DDE5","DED2","DFA6","DA24"],
@@ -79,7 +79,7 @@ var button = function(){
         var counter = e/2 -1
         var b = e - 2
         var res = bytes.substr(b, e)
-        c[counter] = res.substr(0, 2)
+        byteArray[counter] = res.substr(0, 2)
         e = b
     }
 }
@@ -116,30 +116,33 @@ var encode = function(){
     var ireplacement = ["80","82","84","86","88","8A","8C","8E","90","92"]
     var greplacement = ["D1","D2","D3","D4","D5","D6","D7","D8","D9","DA"]
     //replace items
-    c[20099] = "00"
-c[parseInt("31127", 16)] = "00"
-c[parseInt("31158", 16)] = "00"
-c[parseInt("31197", 16)] = "00"
-c[parseInt("311C8", 16)] = "08"
-c[parseInt("311D8", 16)] = "00"
-c[parseInt("25817", 16)] = "00"
-c[parseInt("25848", 16)] = "00"
-c[parseInt("25887", 16)] = "00"
+    byteArray[20099] = "00"
+byteArray[parseInt("31127", 16)] = "00"
+byteArray[parseInt("31158", 16)] = "00"
+byteArray[parseInt("31197", 16)] = "00"
+byteArray[parseInt("311C8", 16)] = "08"
+byteArray[parseInt("311D8", 16)] = "00"
+byteArray[parseInt("25817", 16)] = "00"
+byteArray[parseInt("25848", 16)] = "00"
+byteArray[parseInt("25887", 16)] = "00"
 
-c[parseInt("27c27", 16)] = "00"
-c[parseInt("27c58", 16)] = "00"
-c[parseInt("27c97", 16)] = "00"
-c[parseInt("27cd8", 16)] = "00"
-c[parseInt("251bF", 16)] = "00"
-c[parseInt("251aB", 16)] = "00"
-c[parseInt("25197", 16)] = "00"
-c[parseInt("251d8", 16)] = "00"
-/*c[parseInt("2C6DB", 16)] = "08"
-c[parseInt("2C6EB", 16)] = "08"
-c[parseInt("2C8E3", 16)] = "00"
-c[parseInt("2C8E7", 16)] = "00"
-c[parseInt("2C88B", 16)] = "08"*/
-c[parseInt("4E7A", 16)] = "07"
+byteArray[parseInt("27c27", 16)] = "00"
+byteArray[parseInt("27c58", 16)] = "00"
+byteArray[parseInt("27c97", 16)] = "00"
+byteArray[parseInt("27cd8", 16)] = "00"
+byteArray[parseInt("251bF", 16)] = "00"
+byteArray[parseInt("251aB", 16)] = "00"
+byteArray[parseInt("25197", 16)] = "00"
+byteArray[parseInt("251d8", 16)] = "00"
+
+/*
+this is so old I legit don't remember what this does or why it's commented out, but I'm fixing it anyway
+byteArray[parseInt("2C6DB", 16)] = "08"
+byteArray[parseInt("2C6EB", 16)] = "08"
+byteArray[parseInt("2C8E3", 16)] = "00"
+byteArray[parseInt("2C8E7", 16)] = "00"
+byteArray[parseInt("2C88B", 16)] = "08"*/
+byteArray[parseInt("4E7A", 16)] = "07"
 
         var strseed = document.getElementById("seed").value.split(",")
 	var i = 0
@@ -148,80 +151,80 @@ c[parseInt("4E7A", 16)] = "07"
 	    i += 1
 	}
     
-    c[parseInt(addresses.items[0][0], 16)] = ireplacement[seed[0]]
-    c[parseInt(addresses.items[0][1], 16)] = ireplacement[seed[0]]
+    byteArray[parseInt(addresses.items[0][0], 16)] = ireplacement[seed[0]]
+    byteArray[parseInt(addresses.items[0][1], 16)] = ireplacement[seed[0]]
 
-    c[parseInt(addresses.items[1][0], 16)] = ireplacement[seed[1]]
-    c[parseInt(addresses.items[1][1], 16)] = ireplacement[seed[1]]
+    byteArray[parseInt(addresses.items[1][0], 16)] = ireplacement[seed[1]]
+    byteArray[parseInt(addresses.items[1][1], 16)] = ireplacement[seed[1]]
     
-    c[parseInt(addresses.items[2][0], 16)] = ireplacement[seed[2]]
-    c[parseInt(addresses.items[2][1], 16)] = ireplacement[seed[2]]
+    byteArray[parseInt(addresses.items[2][0], 16)] = ireplacement[seed[2]]
+    byteArray[parseInt(addresses.items[2][1], 16)] = ireplacement[seed[2]]
     
-    c[parseInt(addresses.items[3][0], 16)] = ireplacement[seed[3]]
-    c[parseInt(addresses.items[3][1], 16)] = ireplacement[seed[3]]
+    byteArray[parseInt(addresses.items[3][0], 16)] = ireplacement[seed[3]]
+    byteArray[parseInt(addresses.items[3][1], 16)] = ireplacement[seed[3]]
     
-    c[parseInt(addresses.items[4], 16)] = ireplacement[seed[4]]
+    byteArray[parseInt(addresses.items[4], 16)] = ireplacement[seed[4]]
     
-    c[parseInt(addresses.items[5], 16)] = ireplacement[seed[5]]
+    byteArray[parseInt(addresses.items[5], 16)] = ireplacement[seed[5]]
     
-    c[parseInt(addresses.items[6], 16)] = ireplacement[seed[6]]
+    byteArray[parseInt(addresses.items[6], 16)] = ireplacement[seed[6]]
     
-    c[parseInt(addresses.items[7], 16)] = ireplacement[seed[7]]
+    byteArray[parseInt(addresses.items[7], 16)] = ireplacement[seed[7]]
     
-    c[parseInt(addresses.items[8], 16)] = ireplacement[seed[8]]
+    byteArray[parseInt(addresses.items[8], 16)] = ireplacement[seed[8]]
     
-    c[parseInt(addresses.items[9], 16)] = ireplacement[seed[9]]
+    byteArray[parseInt(addresses.items[9], 16)] = ireplacement[seed[9]]
     
     //replace screen transition codes for proper graphics loading (which a CERTAIN DUMBASS didn't do the first time around)
     
-    c[parseInt(addresses.graphics[0][0], 16)] = greplacement[seed[0]]
-    c[parseInt(addresses.graphics[0][1], 16)] = greplacement[seed[0]]
-    c[parseInt(addresses.graphics[0][2], 16)] = greplacement[seed[0]]
-    c[parseInt(addresses.graphics[0][3], 16)] = greplacement[seed[0]]
-    c[parseInt(addresses.graphics[0][4], 16)] = greplacement[seed[0]]
-    c[parseInt(addresses.graphics[0][5], 16)] = greplacement[seed[0]]
+    byteArray[parseInt(addresses.graphics[0][0], 16)] = greplacement[seed[0]]
+    byteArray[parseInt(addresses.graphics[0][1], 16)] = greplacement[seed[0]]
+    byteArray[parseInt(addresses.graphics[0][2], 16)] = greplacement[seed[0]]
+    byteArray[parseInt(addresses.graphics[0][3], 16)] = greplacement[seed[0]]
+    byteArray[parseInt(addresses.graphics[0][4], 16)] = greplacement[seed[0]]
+    byteArray[parseInt(addresses.graphics[0][5], 16)] = greplacement[seed[0]]
    
-    c[parseInt(addresses.graphics[1][0], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][1], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][2], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][3], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][4], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][5], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][6], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][7], 16)] = greplacement[seed[1]]
-    c[parseInt(addresses.graphics[1][8], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][0], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][1], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][2], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][3], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][4], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][5], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][6], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][7], 16)] = greplacement[seed[1]]
+    byteArray[parseInt(addresses.graphics[1][8], 16)] = greplacement[seed[1]]
 
-    c[parseInt(addresses.graphics[2][0], 16)] = greplacement[seed[2]]
-    c[parseInt(addresses.graphics[2][1], 16)] = greplacement[seed[2]]
-    c[parseInt(addresses.graphics[2][2], 16)] = greplacement[seed[2]]
+    byteArray[parseInt(addresses.graphics[2][0], 16)] = greplacement[seed[2]]
+    byteArray[parseInt(addresses.graphics[2][1], 16)] = greplacement[seed[2]]
+    byteArray[parseInt(addresses.graphics[2][2], 16)] = greplacement[seed[2]]
 
-    c[parseInt(addresses.graphics[3][0], 16)] = greplacement[seed[3]]
-    c[parseInt(addresses.graphics[3][1], 16)] = greplacement[seed[3]]
-    c[parseInt(addresses.graphics[3][2], 16)] = greplacement[seed[3]]
-    c[parseInt(addresses.graphics[3][3], 16)] = greplacement[seed[3]]
-    c[parseInt(addresses.graphics[3][4], 16)] = greplacement[seed[3]]
-    c[parseInt(addresses.graphics[3][5], 16)] = greplacement[seed[3]]
-    c[parseInt(addresses.graphics[4], 16)] = greplacement[seed[4]]
-    c[parseInt(addresses.graphics[5][0], 16)] = greplacement[seed[5]]
-    c[parseInt(addresses.graphics[5][1], 16)] = greplacement[seed[5]]
+    byteArray[parseInt(addresses.graphics[3][0], 16)] = greplacement[seed[3]]
+    byteArray[parseInt(addresses.graphics[3][1], 16)] = greplacement[seed[3]]
+    byteArray[parseInt(addresses.graphics[3][2], 16)] = greplacement[seed[3]]
+    byteArray[parseInt(addresses.graphics[3][3], 16)] = greplacement[seed[3]]
+    byteArray[parseInt(addresses.graphics[3][4], 16)] = greplacement[seed[3]]
+    byteArray[parseInt(addresses.graphics[3][5], 16)] = greplacement[seed[3]]
+    byteArray[parseInt(addresses.graphics[4], 16)] = greplacement[seed[4]]
+    byteArray[parseInt(addresses.graphics[5][0], 16)] = greplacement[seed[5]]
+    byteArray[parseInt(addresses.graphics[5][1], 16)] = greplacement[seed[5]]
  
-    c[parseInt(addresses.graphics[6], 16)] = greplacement[seed[6]]
+    byteArray[parseInt(addresses.graphics[6], 16)] = greplacement[seed[6]]
         
-    c[parseInt(addresses.graphics[7][0], 16)] = greplacement[seed[7]]
-    c[parseInt(addresses.graphics[7][1], 16)] = greplacement[seed[7]]
-    c[parseInt(addresses.graphics[7][2], 16)] = greplacement[seed[7]]
+    byteArray[parseInt(addresses.graphics[7][0], 16)] = greplacement[seed[7]]
+    byteArray[parseInt(addresses.graphics[7][1], 16)] = greplacement[seed[7]]
+    byteArray[parseInt(addresses.graphics[7][2], 16)] = greplacement[seed[7]]
 
-    c[parseInt(addresses.graphics[8][0], 16)] = greplacement[seed[8]]
-    c[parseInt(addresses.graphics[8][1], 16)] = greplacement[seed[8]]
-    c[parseInt(addresses.graphics[8][2], 16)] = greplacement[seed[8]]
-    c[parseInt(addresses.graphics[8][3], 16)] = greplacement[seed[8]]
-    c[parseInt(addresses.graphics[8][4], 16)] = greplacement[seed[8]]
-    c[parseInt(addresses.graphics[9][0], 16)] = greplacement[seed[9]]
-    c[parseInt(addresses.graphics[9][1], 16)] = greplacement[seed[9]]
+    byteArray[parseInt(addresses.graphics[8][0], 16)] = greplacement[seed[8]]
+    byteArray[parseInt(addresses.graphics[8][1], 16)] = greplacement[seed[8]]
+    byteArray[parseInt(addresses.graphics[8][2], 16)] = greplacement[seed[8]]
+    byteArray[parseInt(addresses.graphics[8][3], 16)] = greplacement[seed[8]]
+    byteArray[parseInt(addresses.graphics[8][4], 16)] = greplacement[seed[8]]
+    byteArray[parseInt(addresses.graphics[9][0], 16)] = greplacement[seed[9]]
+    byteArray[parseInt(addresses.graphics[9][1], 16)] = greplacement[seed[9]]
     
     var i = 0
     while(i <= bytes.length){
-        value += ""+c[i]+""
+        value += ""+byteArray[i]+""
         i += 1
     }
     var saver = Converter.stringHexadecimalToBytes(value)
